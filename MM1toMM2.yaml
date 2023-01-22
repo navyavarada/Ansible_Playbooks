@@ -1,0 +1,16 @@
+---
+  - name: playbook
+    hosts: all
+    tasks:
+      - name: store file from mm1 to buffer
+        fetch:
+          src: /home/ansadmin/fetchfile.txt
+          dest: buffer/
+          flat: yes
+        delegate_to: W1
+      - name: copy from cm to mm2
+        copy:
+          src: buffer/fetchfile.txt
+          dest: /home/ansadmin
+        delegate_to: W2
+

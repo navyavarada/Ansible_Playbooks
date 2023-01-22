@@ -1,0 +1,9 @@
+---
+  - name: playbook
+    hosts: all
+    tasks:
+      - name: ansible copy file from remote to local
+        fetch:
+          src: /home/ansadmin/fetchfile.txt
+          dest: /home/ansadmin/
+          flat: yes

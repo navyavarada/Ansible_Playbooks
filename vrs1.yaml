@@ -1,0 +1,14 @@
+---
+  - name: "prompting the values"
+    hosts: all
+    become: yes
+    vars_prompt:
+       name: vars1
+       prompt: enter the values
+
+    tasks:
+     - name: "task"
+       copy:
+         dest: /home/ansadmin/b.txt
+         content: "the appended value {{vars1}}"
+

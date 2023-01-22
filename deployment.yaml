@@ -1,0 +1,55 @@
+---
+  - name: CI/CD Deployment script
+    hosts: all
+    vars:
+      token: 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
+      username: navyavarada
+      repo_name: Citibank2
+    tasks:
+      - name: cloning from git
+        git:
+          repo: https://{{token}}@github.com/{{username}}/{{repo_name}}.git
+          dest: /tmp/project
+
+      - name: installing java version
+        become: yes
+        yum:
+          name: https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.rpm 
+          state: present
+
+#     - name: installing maven
+#       yum:
+#         name: maven
+#         state: present
+
+#     - name: check version
+#       shell: |
+#         mvn --version
+#       register: data
+
+#     - name: build project
+#       shell:
+#         cd /tmp/project
+#         mvn clean package
+#       register: maven_op
+
+#     - name: print maven_op
+#       debug:
+#         var: maven_op
+
+      - name: installing tomcat
+        become: yes
+        unarchive:
+          src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.71/bin/apache-tomcat-9.0.71.tar.gz
+          dest: /tmp/
+          remote_src: yes
+        ignore_errors: True
+
+      - name: renaming tomcat
+        become: yes
+        shell: |
+          mv /tmp/apache-tomcat-9.0.71 /tmp/tomcat
+          chmod -R 777 /tmp/tomcat
+          chown -R ansadmin:ansadmin /tmp/tomcat
+          cp /home/ansadmin/*.war /tmp/tomcat/webapps/
+          sh /tmp/tomcat/bin/startup.sh

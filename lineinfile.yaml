@@ -1,0 +1,9 @@
+---
+  - name: playbook
+    hosts: all
+    tasks:
+      - name: line
+        lineinfile:
+          path: /home/ansadmin/a.txt
+          regexp: '^source$'
+          line: 'The dest option'

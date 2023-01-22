@@ -1,0 +1,14 @@
+---
+  - name: samp
+    hosts: all
+    become: yes
+
+    tasks:
+      - name: "installing multiple softwares"
+        yum:
+          name: "*"
+          state: latest
+          exclude: "{{ item }}"
+        with_items:
+          - java
+          - maven

@@ -1,0 +1,12 @@
+---
+  - name: copying the file
+    hosts: all
+    vars:
+      my_content: "Hello Navya!!"
+
+    tasks:
+      - name: task using delegte module
+        copy:
+          dest: /home/ansadmin/a.txt
+          content: "{{my_content}}"
+        delegate_to: W1

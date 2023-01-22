@@ -1,0 +1,11 @@
+---
+  - name: samp
+    hosts: all
+    vars_files:
+      - "./file.yml"
+
+    tasks:
+      - name: calling the file
+        copy:
+          dest: /home/ansadmin/a.txt
+          content: "{{my_cont}}"

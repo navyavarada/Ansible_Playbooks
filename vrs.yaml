@@ -1,0 +1,12 @@
+---
+  - name: "prompting the values"
+    hosts: all
+    become: yes
+    vars_prompt:
+       name: vars1
+       prompt: enter the values
+
+    tasks:
+     - name: "task"
+       debug:
+         msg: "the value entered {{vars1}}"

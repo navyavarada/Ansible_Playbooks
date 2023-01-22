@@ -1,0 +1,17 @@
+---
+  - name: This is a samp prooj
+    hosts: all
+    become: yes
+    vars:
+      my_content: "this is my playbook"
+
+    tasks:
+      - name: "Create the file"
+        file:
+          path: /home/ansadmin/b.txt
+          state: touch
+
+      - name: "editing the content of file"
+        copy:
+          dest: /home/ansadmin/b.txt
+          content: "{{my_content}}"

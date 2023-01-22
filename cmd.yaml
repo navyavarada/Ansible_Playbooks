@@ -1,0 +1,23 @@
+---
+  - name: sample project
+    hosts: all
+    become: yes
+
+    tasks:
+      - name: "installing httpd service"
+        yum:
+            name: httpd
+            state: present
+
+      - name: "Starting service"
+        service:
+            name: httpd
+            state: started
+
+      - name: "storing the output"
+        command: systemctl status httpd
+        register: httpd
+
+      - name: "printing the output"
+        debug: 
+          var: httpd.stdout_lines

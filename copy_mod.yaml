@@ -1,0 +1,10 @@
+---
+  - name: samp proj
+    hosts: all
+    become: yes
+
+    tasks:
+      - name: "copy the file"
+        copy:
+          src: /home/ansadmin/project1/a.txt
+          dest: /home/ansadmin/

@@ -1,0 +1,19 @@
+---
+  - name: samp
+    hosts: all
+    become: yes
+
+    tasks:
+      - name: "installing multiple softwares"
+        yum:
+          name: "{{ item }}"
+          state: present
+        with_items:
+          - java
+          - git
+          - httpd
+        register: data
+
+      - name: printing the output
+        debug:
+          var: data 

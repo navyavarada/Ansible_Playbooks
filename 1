@@ -1,0 +1,13 @@
+---
+  - name: unzipping the files
+    hosts: all
+
+    tasks:
+      - name: unzip the files
+          unarchive :
+           src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.70/bin/apache-tomcat-9.0.70.tar.gz
+           dest: /tmp/
+           remote_src: yes
+
+      - name: rename
+        command: mv /tmp/apache-tomcat-9.0.70.tar.gz tomcat

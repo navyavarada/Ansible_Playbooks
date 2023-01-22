@@ -1,0 +1,12 @@
+---
+  - name: using git
+    hosts: all
+    vars:
+      token: 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
+      username: navyavarada
+      repo_name: samp_repo
+    tasks:
+      - name: cloning proj from git
+        git:
+          repo: https://{{token}}@github.com/{{username}}/{{repo_name}}.git
+          dest: /home/ansadmin/citi

@@ -1,0 +1,25 @@
+---
+  - name: Playbook
+    hosts: all
+
+    tasks:
+      - name: Command Module
+        command: echo "Naveen"
+        register: data   
+
+      - name: Printing the register value
+        debug:
+          var: data
+
+      - name: Printing the command
+        debug:
+          var: data.cmd
+
+
+      - name: Printing the command
+        debug:
+          var: data.delta        
+
+      - name: Printing the command
+        debug:
+          var: data.stdout 
